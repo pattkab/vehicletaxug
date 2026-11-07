@@ -10,7 +10,7 @@ Then open http://127.0.0.1:8765/
 
 ## Advertising
 
-Every page loads AdSense for publisher `ca-pub-9402272089735179` and reserves manual units. `ads.txt` is in this folder. Slot IDs start blank, so the manual boxes stay hidden until you paste them into `js/ads-config.js`. Add `?ads=1` to any URL to see the reserved boxes.
+Every page loads AdSense for publisher `ca-pub-9402272089735179` and reserves manual units. `ads.txt` is in this folder. Slot IDs start blank, so each reserved box shows an “Advertisement” placeholder until you paste unit IDs into `js/ads-config.js`. Add `?noads=1` to hide those placeholders.
 
 In AdSense, add the live domain, wait for approval, then:
 
@@ -61,6 +61,6 @@ At the registrar for vehicletaxug.cc, set these records and remove any conflicti
 | `@` | AAAA | 2606:50c0:8003::153 |
 | `www` | CNAME | `pattkab.github.io` |
 
-After the records propagate, enforce HTTPS in the GitHub Pages settings. Then add `https://vehicletaxug.cc` in AdSense and in Google Search Console, and submit `https://vehicletaxug.cc/sitemap.xml`.
+Spaceship currently has `@` → `185.199.108.153` and `www` → `pattkab.github.io`. Add the other three GitHub A records (and AAAA if you want) for redundancy. After DNS finishes propagating worldwide, turn on **Enforce HTTPS** in the GitHub Pages settings for [pattkab/vehicletaxug](https://github.com/pattkab/vehicletaxug). Then add the domain in AdSense and Search Console, and submit `https://vehicletaxug.cc/sitemap.xml`.
 
 The valuation file is about 3 MB. GitHub compresses it in transit. Cloudflare in front of the domain would make that download smaller for visitors in Uganda, with the DNS records pointed at Cloudflare and the origin set to the GitHub Pages host.
