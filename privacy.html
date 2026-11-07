@@ -22,11 +22,22 @@
   <link rel="alternate" hreflang="en" href="https://vehicletaxug.cc/privacy.html">
   <link rel="alternate" hreflang="x-default" href="https://vehicletaxug.cc/privacy.html">
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Calculator", "item": "https://vehicletaxug.cc/" },
+      { "@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://vehicletaxug.cc/privacy.html" }
+    ]
+  }
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9402272089735179"
      crossorigin="anonymous"></script>
 </head>
@@ -50,20 +61,22 @@
       <div class="prose">
       <p class="eyebrow">Privacy</p>
       <h1>Privacy policy</h1>
-      <p>Last updated 7 November 2026. This policy covers the UG Vehicle Taxes website published by Potentia Motus Ventures Ltd, Uganda. The Android application has its own policy, linked from the app.</p>
+      <p>Last updated 8 November 2026. This policy covers the UG Vehicle Taxes website published by Potentia Motus Ventures Ltd, Uganda. The Android application has its own policy, linked from the app.</p>
       <div class="ad-slot" data-slot="top"></div>
       <h2>What the calculator does with a search</h2>
       <p>Make, model, year, engine size, CIF and the choices next to them are handled in your browser. The valuation file is downloaded to your browser from this site so the search can run there. We do not receive the vehicle you select, and we do not send it to the Uganda Revenue Authority.</p>
-      <p>The shilling rate you type is saved in local storage on your device so the field can be filled in on a later visit. You can clear it by deleting site data in the browser.</p>
+      <p>The shilling rate you type is saved in local storage on your device so the field can be filled in on a later visit. A short visit stamp is also saved so the usage counter can count one distinct visitor day per browser. You can clear both by deleting site data in the browser.</p>
       <h2>Exchange-rate request</h2>
       <p>The calculator may request a US dollar rate from ExchangeRate-API at <a href="https://open.er-api.com/v6/latest/USD">open.er-api.com</a>. The request contains no vehicle details. The provider sees the IP address and the usual connection data needed to answer. That rate is a market rate, not URA’s customs rate. Their terms are at <a href="https://www.exchangerate-api.com/terms">exchangerate-api.com/terms</a>.</p>
       <div class="ad-slot" data-slot="article" data-format="fluid"></div>
       <h2>Advertising and cookies</h2>
-      <p>Pages carry Google AdSense, using publisher ID ca-app-pub-9402272089735179. Ads may sit below the introduction, between sections of an article, in a desktop sidebar, and above the footer. Google can also place its own anchor and vignette formats. They are labelled Advertisement. Google and its advertising partners may use cookies and similar storage to serve ads, measure them, limit how often you see an ad, and, where the law and your choices allow, make them more relevant.</p>
+      <p>Pages carry Google AdSense, using publisher ID ca-pub-9402272089735179. Ads may sit below the introduction, between sections of an article, in a desktop sidebar, and above the footer. Google can also place its own anchor and vignette formats. They are labelled Advertisement. Google and its advertising partners may use cookies and similar storage to serve ads, measure them, limit how often you see an ad, and, where the law and your choices allow, make them more relevant.</p>
       <p>That processing can include your IP address, an approximate location derived from it, cookie identifiers, ad views and technical data about the browser. Google’s description is in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/ads">How Google uses information from sites or apps that use its services</a>. You can control personalised ads at <a href="https://adssettings.google.com">adssettings.google.com</a>.</p>
       <p>Visitors in the EEA, the UK and some US states should receive Google’s privacy message when that message is turned on for this site in AdSense. Use that message to accept, reject or manage personalised ads where Google offers the choice. A separate home-made banner is not required for the calculator to work, and it should not be placed over the Google message.</p>
+      <h2>Usage statistics</h2>
+      <p>Every public page increments a page-view counter hosted by a third-party counting service. The request carries the usual connection data needed to answer, not the vehicle you searched. Distinct visitor days are counted once per browser per calendar day. Totals are shown on a publisher stats page that is not offered for search indexing. If a Google Analytics Measurement ID is set for this site, Google Analytics also receives standard page-view events; Google’s privacy policy applies to that product.</p>
       <h2>What we do not run</h2>
-      <p>This website has no account, no payment, and no analytics product of our own. Fonts are loaded from Google Fonts, which receives the IP address as part of that request. Links to URA, the Play Store, WhatsApp and email leave this site and are governed by those services.</p>
+      <p>This website has no account and no payment. Fonts are loaded from Google Fonts, which receives the IP address as part of that request. Links to URA, the Play Store, WhatsApp and email leave this site and are governed by those services.</p>
       <h2>Contact and children</h2>
       <p>If you email, call or message us, we use what you send to answer. Do not include a national ID or payment details in a routine question. The site is not directed at children. Advertising choices and this policy can be discussed via the <a href="contact.html">contact page</a>.</p>
       <div class="ad-slot" data-slot="bottom"></div>
@@ -76,6 +89,8 @@
       <nav aria-label="Footer"><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
     </div>
   </footer>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/ads-config.js"></script>
   <script src="js/ads.js"></script>
 </body>

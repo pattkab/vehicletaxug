@@ -1,6 +1,7 @@
 (function () {
   const config = window.UG_ADS || { client: "", slots: {} };
-  const preview = new URLSearchParams(location.search).has("ads");
+  const hidePlaceholders = new URLSearchParams(location.search).has("noads");
+  const client = (config.client || "").trim();
 
   // A desktop rail is removed on small screens before any request, so a hidden
   // unit is never asked to fill. Auto ads still cover phones with anchor ads.
@@ -9,27 +10,38 @@
   }
 
   document.querySelectorAll(".ad-slot").forEach((slot) => {
-    const name = slot.getAttribute("data-slot");
+    const name = slot.getAttribute("data-slot") || "display";
     const unit = config.slots && config.slots[name];
-    if (!config.client || !unit) {
-      if (!preview) {
+
+    if (!client || !unit) {
+      if (hidePlaceholders) {
         slot.remove();
         return;
       }
+      // Keep layout reserved until AdSense unit IDs are pasted into ads-config.js.
+      slot.classList.add("ad-slot-placeholder");
+      slot.setAttribute("aria-hidden", "true");
       slot.innerHTML =
-        '<p class="ad-label">Advertisement</p><div class="ad-preview">Reserved ' +
+        '<p class="ad-label">Advertisement</p>' +
+        '<div class="ad-preview" data-slot-name="' +
         name +
-        " unit. It stays hidden until a slot ID is set.</div>";
+        '">Ad placement reserved. Google ads will appear here once the site is approved and a unit ID is set.</div>';
       return;
     }
+
+    slot.classList.remove("ad-slot-placeholder");
+    slot.removeAttribute("aria-hidden");
     slot.innerHTML = '<p class="ad-label">Advertisement</p>';
+    const format = slot.getAttribute("data-format") || "auto";
     const ins = document.createElement("ins");
     ins.className = "adsbygoogle";
     ins.style.display = "block";
-    ins.setAttribute("data-ad-client", config.client);
+    ins.setAttribute("data-ad-client", client);
     ins.setAttribute("data-ad-slot", unit);
-    ins.setAttribute("data-ad-format", slot.getAttribute("data-format") || "auto");
-    ins.setAttribute("data-full-width-responsive", "true");
+    ins.setAttribute("data-ad-format", format);
+    if (format !== "autorelaxed") {
+      ins.setAttribute("data-full-width-responsive", "true");
+    }
     slot.appendChild(ins);
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});

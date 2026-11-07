@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-UG" data-no-analytics="1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site usage | UG Vehicle Taxes</title>
+  <meta name="description" content="Pageview and visitor totals for the UG Vehicle Taxes website.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#075e64">
+  <link rel="icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">UG</span><span><strong>UG Vehicle Taxes</strong><small>Uganda import estimator</small></span></a>
+      <nav aria-label="Primary">
+        <a href="index.html">Calculator</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrap prose">
+      <p class="eyebrow">Publisher</p>
+      <h1>How many people use the site</h1>
+      <p class="lede">Totals from the built-in usage counter. This page is not indexed. Paste a Google Analytics Measurement ID into <code>js/site-config.js</code> for richer charts.</p>
+      <div class="stats-grid" aria-live="polite">
+        <div class="stat-card">
+          <p class="stat-label">Page views</p>
+          <p class="stat-value" id="stat-pageviews">…</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Distinct visitor days</p>
+          <p class="stat-value" id="stat-visitors">…</p>
+        </div>
+      </div>
+      <h2>By page</h2>
+      <div class="table-wrap">
+        <table class="data" id="stat-pages">
+          <thead><tr><th>Page</th><th>Views</th></tr></thead>
+          <tbody>
+            <tr><td colspan="2">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">A “distinct visitor day” counts once per browser per calendar day. It is not a unique-person census. Google Analytics, when configured, is the fuller report.</p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p>Potentia Motus Ventures Ltd</p>
+      <nav aria-label="Footer"><a href="privacy.html">Privacy</a><a href="index.html">Calculator</a></nav>
+    </div>
+  </footer>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
+  <script>
+  (function () {
+    const stats = window.UG_STATS;
+    const pages = [
+      { label: "Calculator", key: "index", href: "index.html" },
+      { label: "URA values", key: "valuation-guide", href: "valuation-guide.html" },
+      { label: "How tax is worked out", key: "how-taxes-work", href: "how-taxes-work.html" },
+      { label: "Rates", key: "rates", href: "rates.html" },
+      { label: "Age and levy", key: "age-rules", href: "age-rules.html" },
+      { label: "After customs", key: "after-customs", href: "after-customs.html" },
+      { label: "FAQ", key: "faq", href: "faq.html" },
+      { label: "About", key: "about", href: "about.html" },
+      { label: "Contact", key: "contact", href: "contact.html" },
+      { label: "Privacy", key: "privacy", href: "privacy.html" },
+    ];
+
+    function format(n) {
+      if (n == null || !Number.isFinite(n)) return "—";
+      return Math.max(0, Math.floor(n)).toLocaleString("en-UG");
+    }
+
+    function fill(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = format(value);
+    }
+
+    if (!stats) {
+      fill("stat-pageviews", null);
+      fill("stat-visitors", null);
+      return;
+    }
+
+    Promise.all([
+      stats.get(stats.keys.pageviews),
+      stats.get(stats.keys.visitors),
+      Promise.all(pages.map((page) => stats.get(stats.keys.pagePrefix + page.key).then((value) => ({ page, value })))),
+    ]).then(([pageviews, visitors, rows]) => {
+      fill("stat-pageviews", pageviews);
+      fill("stat-visitors", visitors);
+      const body = document.querySelector("#stat-pages tbody");
+      body.innerHTML = "";
+      rows
+        .slice()
+        .sort((a, b) => (b.value || 0) - (a.value || 0))
+        .forEach(({ page, value }) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = "<td><a href=\"" + page.href + "\">" + page.label + "</a></td><td>" + format(value) + "</td>";
+          body.appendChild(tr);
+        });
+    });
+  })();
+  </script>
+</body>
+</html>
